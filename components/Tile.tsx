@@ -10,26 +10,26 @@ interface TileProps {
 }
 
 const Tile: React.FC<TileProps> = ({ value, onClick, proximity, isSolved, style }) => {
-  const baseClasses = "absolute flex items-center justify-center font-bold text-3xl md:text-5xl rounded-lg shadow-lg select-none transition-all duration-300 ease-in-out";
+  const baseClasses = "absolute flex items-center justify-center font-bold text-3xl md:text-5xl rounded-lg shadow-lg select-none transition-all duration-300 ease-in-out text-white";
   
   let tileClasses = "";
 
   if (isSolved) {
-      tileClasses = "bg-green-500/80 text-white cursor-default";
+      tileClasses = "bg-green-400 cursor-default";
   } else {
       switch (proximity) {
         case 'empty':
-            tileClasses = "bg-gray-800 cursor-default";
+            tileClasses = "bg-gray-200 cursor-default";
             break;
         case 'correct':
-            tileClasses = "bg-green-600 text-white cursor-pointer transform hover:scale-105";
+            tileClasses = "bg-green-500 cursor-pointer transform hover:scale-105";
             break;
         case 'close':
-            tileClasses = "bg-orange-500 text-white cursor-pointer transform hover:scale-105";
+            tileClasses = "bg-yellow-400 cursor-pointer transform hover:scale-105";
             break;
         case 'far':
         default:
-            tileClasses = "bg-indigo-600 text-white hover:bg-indigo-500 cursor-pointer transform hover:scale-105";
+            tileClasses = "bg-blue-500 hover:bg-blue-400 cursor-pointer transform hover:scale-105";
             break;
       }
   }

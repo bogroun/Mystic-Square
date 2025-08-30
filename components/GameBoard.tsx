@@ -17,7 +17,7 @@ const GameBoard: React.FC<GameBoardProps> = ({ board, onTileClick, isSolved }) =
   const PADDING_PERCENT = TILE_GAP_PERCENT;
 
   return (
-    <div className="relative w-full p-2 md:p-4 bg-gray-700 rounded-xl shadow-2xl" style={{ aspectRatio: '1 / 1' }}>
+    <div className="relative w-full p-2 md:p-4 bg-gray-200 rounded-xl shadow-2xl" style={{ aspectRatio: '1 / 1' }}>
       {board.map((row, rowIndex) =>
         row.map((value, colIndex) => {
           const proximity = getTileProximity(value, rowIndex, colIndex, gridSize);

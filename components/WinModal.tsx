@@ -39,7 +39,7 @@ interface WinModalProps {
 const ActionButton: React.FC<{onClick: () => void, children: React.ReactNode, className?: string}> = ({ onClick, children, className = '' }) => (
     <button
       onClick={onClick}
-      className={`px-4 py-2 w-full rounded-md font-semibold transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 ${className}`}
+      className={`px-4 py-2 w-full rounded-md font-semibold transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white ${className}`}
     >
       {children}
     </button>
@@ -63,34 +63,34 @@ const WinModal: React.FC<WinModalProps> = ({ show, time, moves, gridSize, onClos
 
             // Background gradient
             const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
-            gradient.addColorStop(0, '#1f2937');
-            gradient.addColorStop(1, '#111827');
+            gradient.addColorStop(0, '#f9fafb');
+            gradient.addColorStop(1, '#f3f4f6');
             ctx.fillStyle = gradient;
             ctx.fillRect(0, 0, 1200, 630);
             
             // Main Title
-            ctx.fillStyle = '#a78bfa'; // text-purple-400
+            ctx.fillStyle = '#2563eb'; // text-blue-600
             ctx.font = 'bold 80px Poppins';
             ctx.textAlign = 'center';
-            ctx.shadowColor = 'rgba(0,0,0,0.5)';
+            ctx.shadowColor = 'rgba(0,0,0,0.1)';
             ctx.shadowBlur = 10;
             ctx.fillText('PUZZLE SOLVED!', 600, 140);
             ctx.shadowBlur = 0;
 
             // Stats
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = '#1f2937'; // text-gray-800
             ctx.font = '60px Poppins';
             ctx.fillText(`Time: ${time}s`, 600, 290);
             ctx.fillText(`Moves: ${moves}`, 600, 380);
 
             // Puzzle Type
             ctx.font = '40px Poppins';
-            ctx.fillStyle = '#9ca3af'; // text-gray-400
+            ctx.fillStyle = '#4b5563'; // text-gray-600
             ctx.fillText(`${gridSize * gridSize - 1}-Puzzle`, 600, 470);
 
              // Footer
             ctx.font = 'italic 24px Poppins';
-            ctx.fillStyle = '#6b7280'; // text-gray-500
+            ctx.fillStyle = '#9ca3af'; // text-gray-400
             ctx.fillText('Mystic Square Puzzle', 600, 580);
 
             setShareImageUrl(canvas.toDataURL('image/png'));
@@ -119,34 +119,34 @@ const WinModal: React.FC<WinModalProps> = ({ show, time, moves, gridSize, onClos
     if (!show) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="win-title">
-            <div className="relative bg-gray-800 rounded-2xl shadow-2xl p-6 md:p-8 max-w-lg w-full text-center border border-gray-700 transform transition-all animate-fade-in-up">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="win-title">
+            <div className="relative bg-white rounded-2xl shadow-2xl p-6 md:p-8 max-w-lg w-full text-center border border-gray-200 transform transition-all animate-fade-in-up">
                 <Confetti />
-                <h2 id="win-title" className="text-3xl md:text-4xl font-bold text-purple-400 mb-4">Congratulations!</h2>
-                <p className="text-gray-300 mb-6">You solved the puzzle!</p>
+                <h2 id="win-title" className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">Congratulations!</h2>
+                <p className="text-gray-600 mb-6">You solved the puzzle!</p>
 
                 {shareImageUrl && (
-                     <div className="mb-6 rounded-lg overflow-hidden border-2 border-gray-600">
+                     <div className="mb-6 rounded-lg overflow-hidden border-2 border-gray-300">
                         <img src={shareImageUrl} alt="Puzzle solved summary" className="w-full" />
                      </div>
                 )}
                 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-                    <ActionButton onClick={onNewGame} className="bg-green-600 hover:bg-green-500 text-white">
+                    <ActionButton onClick={onNewGame} className="bg-blue-500 hover:bg-blue-600 text-white">
                         Play Again
                     </ActionButton>
-                    <ActionButton onClick={handleShare} className="bg-blue-600 hover:bg-blue-500 text-white">
+                    <ActionButton onClick={handleShare} className="bg-gray-200 hover:bg-gray-300 text-gray-800">
                         Share Result
                     </ActionButton>
                     <a 
                         href={shareImageUrl} 
                         download="mystic-square-solved.png"
-                        className="px-4 py-2 w-full block rounded-md font-semibold transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 bg-indigo-600 hover:bg-indigo-500 text-white"
+                        className="px-4 py-2 w-full block rounded-md font-semibold transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white bg-gray-200 hover:bg-gray-300 text-gray-800"
                     >
                        Download
                     </a>
                 </div>
-                <button onClick={onClose} className="absolute top-3 right-3 text-gray-500 hover:text-white transition-colors">&times;</button>
+                <button onClick={onClose} className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 transition-colors">&times;</button>
                 <canvas ref={canvasRef} style={{ display: 'none' }} />
             </div>
         </div>

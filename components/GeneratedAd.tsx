@@ -50,9 +50,9 @@ const GeneratedAd: React.FC<{ prompt: string; className?: string }> = ({ prompt,
       
       {/* Fallback for any other prompt, though not currently used in the app */}
       {!isMysticFuel && !isPuzzlePops && (
-         <div className="w-full h-full flex items-center justify-center bg-gray-800/50 rounded-lg p-4">
+         <div className="w-full h-full flex items-center justify-center bg-gray-200 rounded-lg p-4">
             <div className="text-center text-gray-500">
-                <h3 className="font-bold text-gray-400">Ad Placement</h3>
+                <h3 className="font-bold text-gray-600">Ad Placement</h3>
             </div>
          </div>
       )}
